@@ -2,7 +2,8 @@ h1 {
     color: #ffffff;
 }
 
-#side-bar{
-
-    height: 720px;
+.days{
+    height: 200px;
+    width: 220px;
+    background-color: black;
 }
