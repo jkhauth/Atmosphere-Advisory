@@ -1,10 +1,42 @@
+
+
+
+
+
+//SEARCH A CITY
+$.ajax({
+  url: 'http://api.positionstack.com/v1/forward?access_key=3db36236fe6861dd9972cda7b6b33cce&query=' + localStorage.getItem('City:'),
+  method: 'GET',
+  success: function (response) {
+  var lat = response.data[0].latitude
+  var long = response.data[0].longitude
+  console.log(response)
+  console.log(response.data[0].name) // RETURNS NAME
+  console.log(lat.toFixed(2));
+  console.log(long.toFixed(2));
+  return lat, long;
+  }
+});
+
+
+
 //WEATHER ID INFORMATION
 var weathercity = "Philadelphia";
 var key = '72a27384b9e0dc5b9d8a220614591fb8';
-var oneCall = 'https://api.openweathermap.org/data/2.5/onecall?lat=39.95&lon=-75.16&exclude=alerts&appid=' + key
+var oneCall = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon='+ long + '&exclude=alerts&appid=' + key
 var currentURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + weathercity + '&appid=' + key 
 
+var citySearch = $('#citySearch')
+var citySearchVal = $(citySearch).val()
 
+$('#citySearchBtn').click(function (e) { 
+  e.preventDefault();
+  localStorage.setItem('City:', $(citySearch).val())
+});
+
+console.log(localStorage)
+
+console.log(localStorage.getItem('City:'))
 
 
 //MAIN TEXT INFORMATION
@@ -40,20 +72,22 @@ var dayFourhumid = $('#day-four-humid')
 var dayFivedate = $('#day-five-date')
 var dayFivetemp = $('#day-five-temp')
 var dayFivehumid = $('#day-five-humid')
+parseFloat
 
 
 
+
+
+//TEXT DECLERATION
 $.ajax({
   url: oneCall,
   method: "GET",
   success: function (response) {
-  console.log(response);
+  // console.log(response);
   //MAIN HEADING DECELERATION
   var date = (response.current.dt)
   var currentdateconv = date * 1000
   var currentdate = new Date (currentdateconv)
-  console.log(currentdateconv)
-  console.log(currentdate)
   $(mainCitydate).text(currentdate.toLocaleString())
   $(mainCitytext).text('City Selected: ' + weathercity)
   $(mainCitytemp).text('Current Temp: ' + Math.round(((parseFloat(response.current.temp)-273.15)*1.8)+32)); // CURRENT TEMP
@@ -102,10 +136,7 @@ $.ajax({
  $(dayFivetemp).text('TEMP: ' + Math.round(((parseFloat(response.daily[5].temp.day)-273.15)*1.8)+32))
  $(dayFivehumid).text('HUMIDITY: ' + response.daily[5].humidity)
 
-}
-
-  
-  
+}  
 });
 
 
