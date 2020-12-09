@@ -1,45 +1,25 @@
 
-
-
-
-
-//SEARCH A CITY
+//SEARCH A CITY{
 $.ajax({
-  url: 'http://api.positionstack.com/v1/forward?access_key=3db36236fe6861dd9972cda7b6b33cce&query=' + localStorage.getItem('City:'),
-  method: 'GET',
-  success: function (response) {
-  var lat = response.data[0].latitude
-  var long = response.data[0].longitude
-  console.log(response)
-  console.log(response.data[0].name) // RETURNS NAME
-  console.log(lat.toFixed(2));
-  console.log(long.toFixed(2));
-  return lat, long;
-  }
-});
-
-
-
-//WEATHER ID INFORMATION
-var weathercity = "Philadelphia";
+url: 'http://api.positionstack.com/v1/forward?access_key=3db36236fe6861dd9972cda7b6b33cce&query=' + localStorage.getItem('City:'),
+method: 'GET',
+success: function getCity(response) {
+var latitude = response.data[0].latitude
+var longitude = response.data[0].longitude
+var lat = latitude.toFixed(2);
+var long = longitude.toFixed(2);
+console.log(response.data[0])
 var key = '72a27384b9e0dc5b9d8a220614591fb8';
 var oneCall = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon='+ long + '&exclude=alerts&appid=' + key
-var currentURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + weathercity + '&appid=' + key 
-
 var citySearch = $('#citySearch')
-var citySearchVal = $(citySearch).val()
 
 $('#citySearchBtn').click(function (e) { 
   e.preventDefault();
   localStorage.setItem('City:', $(citySearch).val())
 });
 
-console.log(localStorage)
-
-console.log(localStorage.getItem('City:'))
-
-
 //MAIN TEXT INFORMATION
+var weathercity = response.data[0].label;
 var mainCitytext = $('#mainCitytext')
 var mainCitydate = $('#mainCitydate')
 var mainCitytemp = $('#mainCitytemp')
@@ -72,11 +52,6 @@ var dayFourhumid = $('#day-four-humid')
 var dayFivedate = $('#day-five-date')
 var dayFivetemp = $('#day-five-temp')
 var dayFivehumid = $('#day-five-humid')
-parseFloat
-
-
-
-
 
 //TEXT DECLERATION
 $.ajax({
@@ -85,6 +60,7 @@ $.ajax({
   success: function (response) {
   // console.log(response);
   //MAIN HEADING DECELERATION
+  console.log(response)
   var date = (response.current.dt)
   var currentdateconv = date * 1000
   var currentdate = new Date (currentdateconv)
@@ -109,8 +85,8 @@ $.ajax({
  var daytwoDateconv = daytwoDateresp * 1000
  var daytwoDate = new Date(daytwoDateconv)
  $(dayTwodate).text(daytwoDate.toLocaleString())
- $(dayOnetemp).text('TEMP: ' + Math.round(((parseFloat(response.daily[2].temp.day)-273.15)*1.8)+32))
- $(dayOnehumid).text('HUMIDITY: ' + response.daily[2].humidity)
+ $(dayTwotemp).text('TEMP: ' + Math.round(((parseFloat(response.daily[2].temp.day)-273.15)*1.8)+32))
+ $(dayTwohumid).text('HUMIDITY: ' + response.daily[2].humidity)
 
  // DAY ONE
  var daythreeDateresp = (response.daily[3].dt)
@@ -138,6 +114,15 @@ $.ajax({
 
 }  
 });
+
+},
+error: function(ex){
+  alert('cant be reached')
+}
+});
+
+
+//WEATHER ID INFORMATION
 
 
 
