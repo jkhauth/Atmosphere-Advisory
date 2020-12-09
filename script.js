@@ -9,29 +9,33 @@ var saveCities = JSON.parse(localStorage.getItem('Cities'))
     };
 
 for (var i = 0; i < saveCities.length; i++){
-  $('ul').append('<button class="btn btn-primary">' + saveCities[i] + '</btn btn-primary>');
+  $('ul').append('<li><button class="btn btn-primary" value='+saveCities[i]+'>' + saveCities[i] + '</button></li>');
 }
 
+console.log()
 
-    $('#citySearchBtn').click(function (e) { 
-  e.preventDefault();
-
-  var citySearch = $('#citySearch');
-  
-  var searchedCity = $('#citySearch').val();
-  
-  saveCities.push(searchedCity);
-  localStorage.setItem('Cities', JSON.stringify(saveCities));
-  $('ul').append('<button class="btn btn-primary">' + $(citySearch).val() + '</btn btn-primary>');
-  searchCity();
+$('#citySearchBtn').click(function (e) { 
+e.preventDefault();
+var citySearch = $('#citySearch');
+var searchedCity = $('#citySearch').val();
+saveCities.push(searchedCity);
+localStorage.setItem('Cities', JSON.stringify(saveCities));
+$('ul').append('<button class="btn btn-primary">'+$(citySearch).val()+'</button>');
+searchCity();
 });
 
 
-console.log(JSON.parse(localStorage.getItem('Cities')))
+// $('button').click(function (e) { 
+//   e.preventDefault();
+//   var citySearch = $(this).val();
+//   console.log($(this).val())
+//   searchCity()
+// });
 
 
 //SEARCH A CITY
 function searchCity(){
+
 $.ajax({
 url: 'http://api.positionstack.com/v1/forward?access_key=3db36236fe6861dd9972cda7b6b33cce&query=' + $(citySearch).val(),
 method: 'GET',
@@ -145,6 +149,4 @@ error: function(ex){
 }
 });
 }
-
-
 };

@@ -7,3 +7,8 @@ h1, h3, h6, h4, li{
     width: 220px;
     background-color: black;
 }
+
+li {
+
+list-style-type: none;
+}
