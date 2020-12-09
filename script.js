@@ -13,7 +13,7 @@ for (var i = 0; i < saveCities.length; i++){
   $(saveCityButton.attr('class', 'city'))
   $(saveCityButton.attr('id', saveCities[i]))
   $(saveCityButton).addClass('align-center')
-  $(saveCityButton).addClass('btn btn-primary mt-2')
+  $(saveCityButton).addClass('btn btn-info mt-2')
 }
 
 $('#citySearchBtn').click(function (e) { 
@@ -30,6 +30,7 @@ $('#savedCities').append(saveCityButton)
 $(saveCityButton).text(searchedCity)
 $(saveCityButton).attr('class', 'city')
 $(saveCityButton).attr('id', searchedCity)
+$(saveCityButton).addClass('btn btn-info mt-2')
 localStorage.setItem('Cities', JSON.stringify(saveCities));
 }
 });
@@ -104,6 +105,7 @@ $.ajax({
   var currentdate = new Date (currentdateconv)
   $(mainCitydate).text(currentdate.toLocaleString())
   $(mainCitytext).text(weathercity)
+  $(mainCityImg).removeAttr('class', 'hide');
   $(mainCityImg).attr('src', 'http://openweathermap.org/img/wn/'+ response.current.weather[0].icon+'.png')
   $(mainCitytemp).text('Current Temp: ' + Math.round(((parseFloat(response.current.temp)-273.15)*1.8)+32)); // CURRENT TEMP
   $(mainCitywind).text('Current Wind Speed: ' + response.current.wind_speed); // CURRENT WINDSPEED
@@ -117,6 +119,7 @@ $.ajax({
   var dayoneDate = new Date(dayoneDateconv)
   var dayoneimg = ('#day-one-img')
   $(dayOnedate).text(dayoneDate.toLocaleString())
+  $(dayoneimg).removeAttr('class', 'hide');
   $(dayoneimg).attr('src','http://openweathermap.org/img/wn/'+ response.daily[1].weather[0].icon+'.png')
   $(dayOnetemp).text('TEMP: ' + Math.round(((parseFloat(response.daily[1].temp.day)-273.15)*1.8)+32))
   $(dayOnehumid).text('HUMIDITY: ' + response.daily[1].humidity)
@@ -127,6 +130,7 @@ $.ajax({
  var daytwoDate = new Date(daytwoDateconv)
  var daytwoimg = ('#day-two-img')
  $(dayTwodate).text(daytwoDate.toLocaleString())
+ $(daytwoimg).removeAttr('class', 'hide');
  $(daytwoimg).attr('src','http://openweathermap.org/img/wn/'+ response.daily[2].weather[0].icon+'.png')
  $(dayTwotemp).text('TEMP: ' + Math.round(((parseFloat(response.daily[2].temp.day)-273.15)*1.8)+32))
  $(dayTwohumid).text('HUMIDITY: ' + response.daily[2].humidity)
@@ -137,6 +141,7 @@ $.ajax({
  var daythreeimg = ('#day-three-img')
  var daythreeDate = new Date(daythreeDateconv)
  $(dayThreedate).text(daythreeDate.toLocaleString())
+ $(daythreeimg).removeAttr('class', 'hide');
  $(daythreeimg).attr('src','http://openweathermap.org/img/wn/'+ response.daily[3].weather[0].icon+'.png')
  $(dayThreetemp).text('TEMP: ' + Math.round(((parseFloat(response.daily[3].temp.day)-273.15)*1.8)+32))
  $(dayThreehumid).text('HUMIDITY: ' + response.daily[3].humidity)
@@ -147,6 +152,7 @@ $.ajax({
  var dayfourDate = new Date(dayfourDateconv)
  var dayfourimg = ('#day-four-img')
  $(dayFourdate).text(dayfourDate.toLocaleString())
+ $(dayfourimg).removeAttr('class', 'hide');
  $(dayfourimg).attr('src','http://openweathermap.org/img/wn/'+ response.daily[4].weather[0].icon+'.png')
  $(dayFourtemp).text('TEMP: ' + Math.round(((parseFloat(response.daily[4].temp.day)-273.15)*1.8)+32))
  $(dayFourhumid).text('HUMIDITY: ' + response.daily[4].humidity)
@@ -157,6 +163,7 @@ $.ajax({
  var dayfiveimg = ('#day-five-img')
  var dayfiveDate = new Date(dayfiveDateconv)
  $(dayFivedate).text(dayfiveDate.toLocaleString())
+ $(dayfiveimg).removeAttr('class', 'hide');
  $(dayfiveimg).attr('src','http://openweathermap.org/img/wn/'+ response.daily[5].weather[0].icon+'.png')
  $(dayFivetemp).text('TEMP: ' + Math.round(((parseFloat(response.daily[5].temp.day)-273.15)*1.8)+32))
  $(dayFivehumid).text('HUMIDITY: ' + response.daily[5].humidity)
