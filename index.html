@@ -15,8 +15,8 @@
             <form>
             <label for="exampleDataList" class="form-label">Search City</label>
             <input type='text' class="form-control" list="datalistOptions" id="citySearch" placeholder="Type to search...">
-            <input type="submit" class="btn btn-primary mt-2" id="citySearchBtn"></input>
-            <div id="savedCities">
+            <input type="submit" class="btn btn-primary mt-2 mb-2" id="citySearchBtn"></input>
+            <div id="savedCities" class="d-flex flex-column">
             </div>
             </form>
 
@@ -27,47 +27,47 @@
             <h1 class="display-1 text-center">Welcome to Weather</h1>
             </div>
             <!--CURRENT WEATHER STATS-->
-            <div class="row current-stats bg-success border" id="current-stats">
+            <div class="row current-stats bg-dark border justify-content-center" id="current-stats">
                 <h1 class="text-center">CURRENT STATS</h1>
-                <h1 id="mainCitytext"></h1>
-                <h3 id="mainCitydate"></h3>
-                <h3 id="mainCitytemp"></h3>
-                <h3 id="mainCitywind"></h3>
-                <h4 id="mainCityUV"></h3>
+                <h1 id="mainCitytext" class="text-center"></h1><img id="mainCityIcon" alt="mainCityIcon">
+                <h3 id="mainCitydate" class="text-center"></h3>
+                <h3 id="mainCitytemp" class="text-center"></h3>
+                <h3 id="mainCitywind" class="text-center"></h3>
+                <h4 id="mainCityUV" class="text-center"></h3>
                 <br>
             </div>
             <!--5 DAY WEEK FORECAST-->
             <div class="row five-day justify-content-center" id="five-day">
                 <div class="row five-day-header text-center">
-                    <h1>5-Day Forecast</h1>
+                    <h1 id="fiveday">5-Day Forecast</h1>
                 </div>
             <div class="days m-2" id="day-one">
                 <h4 id='day-one-date'>DATE</h4>
-                <h6 id='day-one-img'>IMG</h6>
+                <img id='day-one-img' class="five-day-img" alt="five-day-img"></img><!--img-->
                 <h6 id='day-one-temp'>TEMP</h6>
                 <h6 id='day-one-humid'>HUMIDITY</h6>
             </div>
             <div class="days m-2" id="day-two">
                 <h4 id='day-two-date'>DATE</h4>
-                <h6 id='day-two-img'>IMG</h6>
+                <img id='day-two-img' class="five-day-img" alt="five-day-img"></img><!--img-->
                 <h6 id='day-two-temp'>TEMP</h6>
                 <h6 id='day-two-humid'>HUMIDITY</h6>
             </div>
             <div class="days m-2" id="day-three">
                 <h4 id='day-three-date'>DATE</h4>
-                <h6 id='day-three-img'>IMG</h6>
+                <img id='day-three-img'class="five-day-img" alt="five-day-img"></img><!--img-->
                 <h6 id='day-three-temp'>TEMP</h6>
                 <h6 id='day-three-humid'>HUMIDITY</h6>
             </div>
             <div class="days m-2" id="day-four">
                 <h4 id='day-four-date'>DATE</h4>
-                <h6 id='day-four-img'>IMG</h6>
+                <img id='day-four-img'class="five-day-img" alt="five-day-img"></img><!--img-->
                 <h6 id='day-four-temp'>TEMP</h6>
                 <h6 id='day-four-humid'>HUMIDITY</h6>
             </div>
             <div class="days m-2" id="day-five">
                 <h4 id='day-five-date'>DATE</h4>
-                <h6 id='day-five-img'>IMG</h6>
+                <img id='day-five-img'class="five-day-img" alt="five-day-img"></img><!--img-->
                 <h6 id='day-five-temp'>TEMP</h6>
                 <h6 id='day-five-humid'>HUMIDITY</h6>
             </div>

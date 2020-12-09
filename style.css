@@ -1,7 +1,10 @@
-h1, h3, h6, h4, li{
+h1, h3, h6, h4, li, #fiveday{
     color: #ffffff;
 }
 
+.five-day{
+    background-color: cadetblue;
+}
 .days {
     height: 200px;
     width: 220px;
@@ -11,4 +14,16 @@ h1, h3, h6, h4, li{
 li {
 
 list-style-type: none;
+}
+
+#mainCityIcon {
+
+    height: 65px;
+    width: 90px;
+
+}
+
+.five-day-img{
+    height: 30px;
+    width: 30px
 }
