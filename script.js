@@ -1,7 +1,31 @@
+$('#citySearchBtn').click(function (e) { 
+  e.preventDefault();
+  var citySearch = $('#citySearch');
+  var cities = []
+  localStorage.setItem('City', JSON.stringify(cities));
+  var searchedCity = localStorage.getItem('City')
+  var savedCities = JSON.parse(searchedCity);
+  cities.push(savedCities);
+  localStorage.setItem('Cities', JSON.stringify(cities))
+  $('ul').append('<button class="btn btn-primary">' + $(citySearch).val() + '</btn btn-primary>');
+  searchCity();
 
-//SEARCH A CITY{
+
+});
+console.log(localStorage)
+
+
+
+
+
+
+
+
+
+//SEARCH A CITY
+function searchCity(){
 $.ajax({
-url: 'http://api.positionstack.com/v1/forward?access_key=3db36236fe6861dd9972cda7b6b33cce&query=' + localStorage.getItem('City:'),
+url: 'http://api.positionstack.com/v1/forward?access_key=3db36236fe6861dd9972cda7b6b33cce&query=' + $(citySearch).val(),
 method: 'GET',
 success: function getCity(response) {
 var latitude = response.data[0].latitude
@@ -11,12 +35,6 @@ var long = longitude.toFixed(2);
 console.log(response.data[0])
 var key = '72a27384b9e0dc5b9d8a220614591fb8';
 var oneCall = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon='+ long + '&exclude=alerts&appid=' + key
-var citySearch = $('#citySearch')
-
-$('#citySearchBtn').click(function (e) { 
-  e.preventDefault();
-  localStorage.setItem('City:', $(citySearch).val())
-});
 
 //MAIN TEXT INFORMATION
 var weathercity = response.data[0].label;
@@ -120,10 +138,4 @@ error: function(ex){
   alert('cant be reached')
 }
 });
-
-
-//WEATHER ID INFORMATION
-
-
-
-
+}

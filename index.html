@@ -11,11 +11,14 @@
     <div class="row">
         <!--COLUMN FOR CITY FORM-->
         <div class="col-3 bg-dark" id="side-bar">
+            <!--WEATHER SEARCH-->
             <form>
             <label for="exampleDataList" class="form-label">Search City</label>
             <input type='text' class="form-control" list="datalistOptions" id="citySearch" placeholder="Type to search...">
             <input type="submit" class="btn btn-primary" id="citySearchBtn"></input>
-        </form>
+            </form>
+            <ul id="savedCities">
+            </ul>
         </div>
     <!--COLUMN FOR SELECTED CITY-->
         <div class="col weather-content container-fluid">
