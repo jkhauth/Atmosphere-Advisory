@@ -10,15 +10,16 @@
 <body>
     <div class="row">
         <!--COLUMN FOR CITY FORM-->
-        <div class="col-3 bg-dark" id="side-bar">
+        <div class="col-2 bg-dark" id="side-bar">
             <!--WEATHER SEARCH-->
             <form>
             <label for="exampleDataList" class="form-label">Search City</label>
             <input type='text' class="form-control" list="datalistOptions" id="citySearch" placeholder="Type to search...">
-            <input type="submit" class="btn btn-primary" id="citySearchBtn"></input>
+            <input type="submit" class="btn btn-primary mt-2" id="citySearchBtn"></input>
+            <div id="savedCities">
+            </div>
             </form>
-            <ul id="savedCities">
-            </ul>
+
         </div>
     <!--COLUMN FOR SELECTED CITY-->
         <div class="col weather-content container-fluid">
@@ -36,7 +37,7 @@
                 <br>
             </div>
             <!--5 DAY WEEK FORECAST-->
-            <div class="row five-day bg-warning justify-content-center" id="five-day">
+            <div class="row five-day justify-content-center" id="five-day">
                 <div class="row five-day-header text-center">
                     <h1>5-Day Forecast</h1>
                 </div>

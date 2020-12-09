@@ -1,43 +1,52 @@
 savedCities();
 
 function savedCities(){
-
 var saveCities = JSON.parse(localStorage.getItem('Cities'))
-
     if (saveCities == null){
       saveCities = [];
     };
 
 for (var i = 0; i < saveCities.length; i++){
-  $('ul').append('<li><button class="btn btn-primary" value='+saveCities[i]+'>' + saveCities[i] + '</button></li>');
+  var saveCityButton = $('<button>')
+  $('#savedCities').append(saveCityButton);
+  $(saveCityButton).text(saveCities[i])
+  $(saveCityButton.attr('class', 'city'))
+  $(saveCityButton.attr('id', saveCities[i]))
 }
-
 console.log()
 
 $('#citySearchBtn').click(function (e) { 
 e.preventDefault();
+var saveCityButton = $('<button>')
 var citySearch = $('#citySearch');
 var searchedCity = $('#citySearch').val();
+$(this).attr('id', searchedCity)
 saveCities.push(searchedCity);
+$('#savedCities').append(saveCityButton)
+$(saveCityButton).text(searchedCity)
+$(saveCityButton).attr('class', 'city')
+$(saveCityButton).attr('id', searchedCity)
 localStorage.setItem('Cities', JSON.stringify(saveCities));
-$('ul').append('<button class="btn btn-primary">'+$(citySearch).val()+'</button>');
-searchCity();
 });
 
+$(document).on('click', '#citySearchBtn', searchCity)
 
-// $('button').click(function (e) { 
-//   e.preventDefault();
-//   var citySearch = $(this).val();
-//   console.log($(this).val())
-//   searchCity()
-// });
 
+//WHEN SAVED CITY IS CLICKED
+$('.city').click(function (e) { 
+  e.preventDefault();
+});
+
+$(document).on('click', '.city', searchCity)
 
 //SEARCH A CITY
 function searchCity(){
 
+var city = $(this).attr('id')
+var queryURL = 'http://api.positionstack.com/v1/forward?access_key=3db36236fe6861dd9972cda7b6b33cce&query='+city
+
 $.ajax({
-url: 'http://api.positionstack.com/v1/forward?access_key=3db36236fe6861dd9972cda7b6b33cce&query=' + $(citySearch).val(),
+url: queryURL,
 method: 'GET',
 success: function getCity(response) {
 var latitude = response.data[0].latitude
@@ -144,9 +153,6 @@ $.ajax({
 });
 
 },
-error: function(ex){
-  alert('cant be reached')
-}
 });
 }
 };
