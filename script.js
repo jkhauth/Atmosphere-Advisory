@@ -1,25 +1,33 @@
-$('#citySearchBtn').click(function (e) { 
+savedCities();
+
+function savedCities(){
+
+var saveCities = JSON.parse(localStorage.getItem('Cities'))
+
+    if (saveCities == null){
+      saveCities = [];
+    };
+
+for (var i = 0; i < saveCities.length; i++){
+  $('ul').append('<button class="btn btn-primary">' + saveCities[i] + '</btn btn-primary>');
+}
+
+
+    $('#citySearchBtn').click(function (e) { 
   e.preventDefault();
+
   var citySearch = $('#citySearch');
-  var cities = []
-  localStorage.setItem('City', JSON.stringify(cities));
-  var searchedCity = localStorage.getItem('City')
-  var savedCities = JSON.parse(searchedCity);
-  cities.push(savedCities);
-  localStorage.setItem('Cities', JSON.stringify(cities))
+  
+  var searchedCity = $('#citySearch').val();
+  
+  saveCities.push(searchedCity);
+  localStorage.setItem('Cities', JSON.stringify(saveCities));
   $('ul').append('<button class="btn btn-primary">' + $(citySearch).val() + '</btn btn-primary>');
   searchCity();
-
-
 });
-console.log(localStorage)
 
 
-
-
-
-
-
+console.log(JSON.parse(localStorage.getItem('Cities')))
 
 
 //SEARCH A CITY
@@ -32,7 +40,6 @@ var latitude = response.data[0].latitude
 var longitude = response.data[0].longitude
 var lat = latitude.toFixed(2);
 var long = longitude.toFixed(2);
-console.log(response.data[0])
 var key = '72a27384b9e0dc5b9d8a220614591fb8';
 var oneCall = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon='+ long + '&exclude=alerts&appid=' + key
 
@@ -78,7 +85,6 @@ $.ajax({
   success: function (response) {
   // console.log(response);
   //MAIN HEADING DECELERATION
-  console.log(response)
   var date = (response.current.dt)
   var currentdateconv = date * 1000
   var currentdate = new Date (currentdateconv)
@@ -139,3 +145,6 @@ error: function(ex){
 }
 });
 }
+
+
+};
