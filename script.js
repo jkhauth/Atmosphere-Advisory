@@ -44,14 +44,14 @@ $(document).on('click', '.city', searchCity)
 function searchCity(e){
   e.preventDefault();
 var city = $(this).attr('id')
-var queryURL = 'http://api.positionstack.com/v1/forward?access_key=3db36236fe6861dd9972cda7b6b33cce&query='+city
+var queryURL = 'https://nominatim.openstreetmap.org/search?q=' + city +'&format=json&addressdetails=1&limit=1'
 
 $.ajax({
 url: queryURL,
 method: 'GET',
 success: function getCity(response) {
-var latitude = response.data[0].latitude
-var longitude = response.data[0].longitude
+var latitude = response.lat
+var longitude = response.lon
 var lat = latitude.toFixed(2);
 var long = longitude.toFixed(2);
 var key = '72a27384b9e0dc5b9d8a220614591fb8';
