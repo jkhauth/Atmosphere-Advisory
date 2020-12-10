@@ -45,20 +45,21 @@ function searchCity(e){
   e.preventDefault();
 var city = $(this).attr('id')
 var queryURL = 'https://nominatim.openstreetmap.org/search?q=' + city +'&format=json&addressdetails=1&limit=1'
-
+parseInt()
 $.ajax({
 url: queryURL,
 method: 'GET',
 success: function getCity(response) {
-var latitude = response.lat
-var longitude = response.lon
-var lat = latitude.toFixed(2);
-var long = longitude.toFixed(2);
+var latitude = parseInt(response[0].lat)
+var longitude = parseInt(response[0].lon)
+console.log(response[0])
+var lat = latitude;
+var long = longitude;
 var key = '72a27384b9e0dc5b9d8a220614591fb8';
 var oneCall = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon='+ long + '&exclude=alerts&appid=' + key
 
 //MAIN TEXT INFORMATION
-var weathercity = response.data[0].label;
+var weathercity = response[0].address.city+','+" "+ response[0].address.state;
 var mainCitytext = $('#mainCitytext')
 var mainCityImg = $('#mainCityIcon')
 var mainCitydate = $('#mainCitydate')
