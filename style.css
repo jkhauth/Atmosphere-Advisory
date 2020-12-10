@@ -17,6 +17,16 @@ h1, h3, h6, h4, li, #fiveday{
     justify-content: center;
     text-align: center;
 }
+.main-head{
+    width: 75%;
+
+}
+.AAlogo{
+    height: 60px;
+    width: 80px;
+}
+
+
 
 li {
 
